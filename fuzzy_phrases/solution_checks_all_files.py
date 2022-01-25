@@ -34,7 +34,7 @@ def phrasel_search(P, Queries):
 
                     # now iterate through this phrase
                     for phrase_word in specific_phrase:
-                        # check if query[start + i] == phrase[i]
+                        # standard, check if query[start + i] == phrase[i]
                         if query[occurrence_index+current_query_index] == phrase_word:
                             total_phrase_in_query.append(phrase_word)
                             current_query_index += 1
@@ -70,13 +70,25 @@ def phrasel_search(P, Queries):
     for ans_per_query in ans_split:
         ans.append([])
         for an in ans_per_query:
-            ans[-1].append(' '.join(an))
+            ans[-1].append(' '.join(an))    
 
     return ans
 
 if __name__ == "__main__":
-    with open('sample.json', 'r') as f:
-        sample_data = json.loads(f.read())
-        P, Queries = sample_data['phrases'], sample_data['queries']
-        returned_ans = phrasel_search(P, Queries)
-        print('============= ALL TEST PASSED SUCCESSFULLY ===============')
+    for file in ['sample.json', '20_points.json', '30_points.json', '50_points.json', '20_points_with_empty.json']:
+        with open(file, 'r') as f:
+            sample_data = json.loads(f.read())
+            P, Queries = sample_data['phrases'], sample_data['queries']
+            returned_ans = phrasel_search(P, Queries)
+
+            if returned_ans == sample_data['solution']:
+                print("TEST PASSED for file: " + file)
+            else:
+                print("TEST FAILED for file: " + file)
+
+# EXPECTED OUTPUT:
+# TEST PASSED for file: sample.json
+# TEST PASSED for file: 20_points.json
+# TEST PASSED for file: 30_points.json
+# TEST PASSED for file: 50_points.json
+# TEST FAILED for file: 20_points_with_empty.json

@@ -1,3 +1,7 @@
+### Notes
+Solution is in `solution.py`.
+
+Added `solution_checks_all_files.py` which checks against all .json's provided. (Added `20_points_with_empty.json` that will fail test on purpose)
 ## Instructions
 - Clone the repository and use it to create a *public* repository in your GitHub account.
 - The problem statement is described in the `problem_statement.pdf` file.
